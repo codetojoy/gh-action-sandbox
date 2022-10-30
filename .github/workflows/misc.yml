@@ -12,7 +12,7 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  my_check:
 
     runs-on: ubuntu-latest
 
