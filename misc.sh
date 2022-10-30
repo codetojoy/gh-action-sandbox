@@ -2,13 +2,17 @@
 
 set -e 
 
-which node
+function my_check() {
+    which $1
 
-if [ $? = 0 ]; then
-    node --version
-else
-    echo "node not found"
-fi
+    if [ $? = 0 ]; then
+        $1 --version
+    else
+        echo "$1 not found"
+    fi
+}
+
+my_check "node"
 
 which npm
 
