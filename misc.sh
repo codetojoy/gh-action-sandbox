@@ -26,4 +26,13 @@ else
     echo "python not found"
 fi
 
+which pip
+
+if [ $? = 0 ]; then
+    echo "pip FOUND"
+else
+    echo "pip not found"
+fi
+
+
 
