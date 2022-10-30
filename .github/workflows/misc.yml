@@ -7,8 +7,18 @@ permissions:
   contents: read
 
 jobs:
-  my_check:
+  init:
+    runs-on: ubuntu-latest
 
+    steps:
+      - name: get code
+        uses: actions/checkout@v3
+
+      - name: init
+        run: echo "TRACER fake init step"
+
+  my_check:
+    needs: init
     runs-on: ubuntu-latest
 
     steps:
