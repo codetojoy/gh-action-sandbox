@@ -14,6 +14,8 @@ function my_check() {
 
 my_check "node"
 my_check "npm"
+
 my_check "python"
 my_check "pip"
 
+my_check "gcc"
