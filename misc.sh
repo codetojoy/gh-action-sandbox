@@ -20,4 +20,4 @@ my_check "pip"
 
 my_check "gcc"
 
-my_check "xbuild"
+# my_check "xbuild"
