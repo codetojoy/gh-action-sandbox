@@ -16,13 +16,17 @@ jobs:
 
       - name: install
         run: npm ci
+        working-directory: project1 
 
       - name: lint
         run: npm run lint
+        working-directory: project1 
 
       - name: test
         run: npm run test
+        working-directory: project1 
 
       - name: build
         run: npm run build
+        working-directory: project1 
 
