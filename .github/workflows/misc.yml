@@ -17,6 +17,9 @@ jobs:
       - name: init
         run: echo "TRACER fake init step"
 
+      - name: context sandbox
+        run echo "${{ toJSON(github) }}"
+
   my_check:
     needs: init
     runs-on: ubuntu-latest
