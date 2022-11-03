@@ -1,0 +1,16 @@
+
+name: proj1_issues
+
+on: [issues]
+
+permissions:
+  contents: read
+
+jobs:
+  init:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: info
+        run: echo "${{ github.event }}"
+
