@@ -12,5 +12,5 @@ jobs:
 
     steps:
       - name: info
-        run: echo "${{ github.event }}"
+        run: echo "${{ toJSON(github.event) }}"
 
