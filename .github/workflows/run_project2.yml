@@ -28,6 +28,10 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
 
+      - name: Gradle version sanity check
+        run: ./gradlew --version
+        working-directory: ./project2
+
       - name: run project2 Runner
         run: ./gradlew app:run 
         working-directory: ./project2
