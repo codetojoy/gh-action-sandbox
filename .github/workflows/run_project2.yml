@@ -29,5 +29,5 @@ jobs:
         uses: gradle/gradle-build-action@v2
 
       - name: run project2 Runner
-        run: ./gradlew run 
-        working-directory: ./project2/app
+        run: ./gradlew app:run 
+        working-directory: ./project2
