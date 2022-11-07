@@ -31,7 +31,7 @@ jobs:
         run: npm run build
         working-directory: project4
       - name: Upload artifacts
-        uses: actions/upload-artifact@3
+        uses: actions/upload-artifact@v3
         with:
           name: dist-files
           path: ./project4/dist
