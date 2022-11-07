@@ -23,6 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       script-file: ${{ steps.publish.outputs.script-file }} 
+      my-foobar: ${{ steps.publish.outputs.my-foobar }} 
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -36,6 +37,9 @@ jobs:
         id: publish
         run: find ./dist/assets/*.js -type f -execdir echo 'script-file={}' >> $GITHUB_OUTPUT ';'
         working-directory: project4
+      - name: Foobar output value
+        id: foobar
+        run: echo 'my-foobar=`date`' >> $GITHUB_OUTPUT 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -54,5 +58,7 @@ jobs:
         run: ls -l 
       - name: Output JS filename
         run: echo "${{ needs.build.outputs.script-file }}"
+      - name: Output Foobar
+        run: echo "${{ needs.build.outputs.my-foobar }}"
       - name: Deploy
         run: echo "Deploying..."
