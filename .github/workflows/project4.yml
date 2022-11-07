@@ -34,7 +34,8 @@ jobs:
         working-directory: project4
       - name: Publish JS filename
         id: publish
-        run: find dist/assets/*.js -type f -execdir echo 'script-file={}' >> $GITHUB_OUTPUT ';'
+        run: find ./dist/assets/*.js -type f -execdir echo 'script-file={}' >> $GITHUB_OUTPUT ';'
+        working-directory: project4
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
