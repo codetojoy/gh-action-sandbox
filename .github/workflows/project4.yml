@@ -33,8 +33,8 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@3
         with:
-          - name: dist-files
-          - path: ./project4/dist
+          name: dist-files
+          path: ./project4/dist
             
   deploy:
     needs: build
