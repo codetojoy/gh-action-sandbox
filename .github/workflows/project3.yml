@@ -19,9 +19,9 @@ jobs:
         run: npm install 
         working-directory: project3
 
-      - name: Test code
-        run: npm run test
-        working-directory: project3
+#      - name: Test code
+#        run: npm run test
+#        working-directory: project3
 
       - name: Build code
         run: npm run build
