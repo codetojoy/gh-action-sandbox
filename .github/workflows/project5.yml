@@ -30,7 +30,8 @@ jobs:
       - name: Run tests
         run: npm test
       - name: Output information
-        run: echo "TRACER username: ${{ env.MONGODB_USERNAME }}"
+        run: |
+          echo "TRACER username: ${{ env.MONGODB_USERNAME }}"
   deploy:
     needs: test
     runs-on: ubuntu-latest
@@ -38,4 +39,4 @@ jobs:
       - name: Output information
         run: |        
           echo "TRACER username: ${{ env.MONGODB_USERNAME }}"
-          echo "..."
+          echo "TRACER ..."
