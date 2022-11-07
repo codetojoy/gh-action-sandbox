@@ -25,10 +25,13 @@ jobs:
           key: npm-deps-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: npm install 
+        working-directory: project5
       - name: Run server
         run: npm start & npx wait-on http://127.0.0.1:$PORT
+        working-directory: project5
       - name: Run tests
         run: npm test
+        working-directory: project5
       - name: Output information
         run: |
           echo "TRACER username: ${{ env.MONGODB_USERNAME }}"
