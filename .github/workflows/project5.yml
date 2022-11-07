@@ -1,0 +1,41 @@
+name: project5_section6
+on:
+  push:
+    branches:
+      - main
+      - dev
+env:
+  MONGODB_DB_NAME: my-gha-demo
+jobs:
+  test:
+    env:
+      MONGODB_CLUSTER_ADDRESS: cluster0.judbg.mongodb.net 
+      MONGODB_USERNAME: ctj_user_5150
+      MONGODB_PASSWORD: PvwUG1XHpt5KodnX
+      PORT: 6160
+    environment: testing
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v3
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: npm-deps-${{ hashFiles('**/package-lock.json') }}
+      - name: Install dependencies
+        run: npm install 
+      - name: Run server
+        run: npm start & npx wait-on http://127.0.0.1:$PORT
+      - name: Run tests
+        run: npm test
+      - name: Output information
+        run: echo "TRACER username: ${{ env.MONGODB_USERNAME }}"
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output information
+        run: |        
+          echo "TRACER username: ${{ env.MONGODB_USERNAME }}"
+          echo "..."
