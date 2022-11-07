@@ -1,4 +1,4 @@
-name: Events Demo 1
+name: project3 wf
 
 on: 
   push:
@@ -19,9 +19,9 @@ jobs:
         run: npm install 
         working-directory: project3
 
-#      - name: Test code
-#        run: npm run test
-#        working-directory: project3
+      - name: Test code
+        run: npm run test
+        working-directory: project3
 
       - name: Build code
         run: npm run build
