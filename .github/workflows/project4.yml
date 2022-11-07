@@ -21,7 +21,7 @@ jobs:
   build:
     needs: test
     runs-on: ubuntu-latest
-    outputs:
+    outputs: |
       script-file: ${{ steps.publish.outputs.script-file }} 
       my-foobar: ${{ steps.publish.outputs.my-foobar }} 
     steps:
