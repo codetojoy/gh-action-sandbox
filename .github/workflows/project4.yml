@@ -45,6 +45,6 @@ jobs:
         with:
           name: dist-files
       - name: Check artifacts
-          run: ls -l 
+        run: ls -l 
       - name: Deploy
         run: echo "Deploying..."
