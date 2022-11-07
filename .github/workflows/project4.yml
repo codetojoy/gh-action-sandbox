@@ -21,9 +21,9 @@ jobs:
   build:
     needs: test
     runs-on: ubuntu-latest
-    outputs: |
+    outputs:
       script-file: ${{ steps.publish.outputs.script-file }} 
-      my-foobar: ${{ steps.publish.outputs.my-foobar }} 
+      my-foobar: ${{ steps.foobar.outputs.my-foobar }} 
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -39,7 +39,7 @@ jobs:
         working-directory: project4
       - name: Foobar output value
         id: foobar
-        run: echo 'my-foobar=5150' >> $GITHUB_OUTPUT 
+        run: echo 'my-foobar=`date`' >> $GITHUB_OUTPUT 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
