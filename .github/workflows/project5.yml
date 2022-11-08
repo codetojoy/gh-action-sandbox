@@ -26,9 +26,10 @@ jobs:
       - name: Install dependencies
         run: npm install 
         working-directory: project5
-      - name: Run server
-        run: npm start & npx wait-on http://127.0.0.1:$PORT
-        working-directory: project5
+
+      # - name: Run server
+      # run: npm start & npx wait-on http://127.0.0.1:$PORT
+      # working-directory: project5
 
       - name: fake test
         run: sleep 2
