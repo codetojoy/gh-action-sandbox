@@ -43,7 +43,7 @@ jobs:
           echo "TRACER repo: $GITHUB_REPOSITORY"
           echo "TRACER workflow: $GITHUB_WORKFLOW"
           echo "TRACER job: $GITHUB_JOB"
-          echo "TRACER MY_FOO [testing]: ${{ env.MY_FOO }}"
+          echo "TRACER MY_FOO [testing]: $MY_FOO"
 
   deploy:
     needs: test
