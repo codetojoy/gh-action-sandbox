@@ -10,8 +10,8 @@ jobs:
   test:
     env:
       MONGODB_CLUSTER_ADDRESS: cluster0.judbg.mongodb.net 
-      MONGODB_USERNAME: ctj_user_5150
-      MONGODB_PASSWORD: xxx
+      MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
+      MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
       PORT: 6160
     environment: testing
     runs-on: ubuntu-latest
@@ -27,17 +27,14 @@ jobs:
         run: npm install 
         working-directory: project5
 
-      # - name: Run server
-      # run: npm start & npx wait-on http://127.0.0.1:$PORT
-      # working-directory: project5
-
-      - name: fake test
-        run: sleep 2
+      - name: Run server
+        run: npm start & npx wait-on http://127.0.0.1:$PORT
         working-directory: project5
-      # requires password (above) and network access on MongoDB Atlas website
-      # - name: Run tests
-      #   run: npm test
-      #   working-directory: project5
+
+      # requires user/pwd (as secrets) and network access on MongoDB Atlas website
+      - name: Run tests
+        run: npm test
+        working-directory: project5
 
       - name: Output information
         run: |
