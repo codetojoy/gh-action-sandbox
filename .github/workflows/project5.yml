@@ -42,10 +42,10 @@ jobs:
       - name: Output information
         run: |
           echo "TRACER username: ${{ env.MONGODB_USERNAME }}"
-          echo "TRACER actor: ${{ env.GITHUB_ACTOR }}"
-          echo "TRACER repo: ${{ env.GITHUB_REPOSITORY }}"
-          echo "TRACER workflow: ${{ env.GITHUB_WORKFLOW }}"
-          echo "TRACER job: ${{ env.GITHUB_JOB }}"
+          echo "TRACER actor: $env:GITHUB_ACTOR"
+          echo "TRACER repo: $env.GITHUB_REPOSITORY"
+          echo "TRACER workflow: $env.GITHUB_WORKFLOW"
+          echo "TRACER job: $env.GITHUB_JOB"
 
   deploy:
     needs: test
