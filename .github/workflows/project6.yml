@@ -36,9 +36,20 @@ jobs:
         run: npm install
         working-directory: project6
       - name: Test code
+        id: run-tests
         run: npm run test
         working-directory: project6
+
+      - name: test checkpoint positive
+        if: steps.run-tests.outcome == 'success' 
+        run: echo "TRACER tests OK"
+
+      - name: test checkpoint negative
+        if: steps.run-tests.outcome != 'success' 
+        run: echo "TRACER tests did NOT succeed !"
+
       - name: Upload test report
+        if: steps.run-tests.outcome == 'failure' 
         uses: actions/upload-artifact@v3
         with:
           name: test-report
