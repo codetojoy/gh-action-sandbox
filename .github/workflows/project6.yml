@@ -43,7 +43,7 @@ jobs:
 
       - name: test checkpoint positive
         # alt, if: failure() && 
-        if: failure() steps.run-tests.outcome == 'success' 
+        if: failure() && steps.run-tests.outcome == 'success' 
         # if: steps.run-tests.outcome == 'success' 
         run: echo "TRACER tests OK"
 
