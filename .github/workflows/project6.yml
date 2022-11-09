@@ -17,8 +17,10 @@ jobs:
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: npm install
+        working-directory: project6
       - name: Lint code
         run: npm run lint
+        working-directory: project6
   test:
     runs-on: ubuntu-latest
     steps:
@@ -32,13 +34,15 @@ jobs:
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: npm install
+        working-directory: project6
       - name: Test code
         run: npm run test
+        working-directory: project6
       - name: Upload test report
         uses: actions/upload-artifact@v3
         with:
           name: test-report
-          path: test.json
+          path: project6/test.json
   build:
     needs: test
     runs-on: ubuntu-latest
@@ -53,14 +57,16 @@ jobs:
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: npm install
+        working-directory: project6
       - name: Build website
         id: build-website
         run: npm run build
+        working-directory: project6
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: dist-files
-          path: dist
+          path: project6/dist
   deploy:
     needs: build
     runs-on: ubuntu-latest
