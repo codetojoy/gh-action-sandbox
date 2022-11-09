@@ -1,0 +1,113 @@
+name: p6_continue_section7
+on:
+  push:
+    branches:
+      - main
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ./project6/node_modules
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm install
+        working-directory: project6
+      - name: Tracer install
+        if: steps.cache.outputs.cache-hit == 'true'
+        run: echo "TRACER cache hit for node_modules" 
+      - name: Lint code
+        run: npm run lint
+        working-directory: project6
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ./project6/node_modules
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm install
+        working-directory: project6
+      - name: Tracer install
+        if: steps.cache.outputs.cache-hit == 'true'
+        run: echo "TRACER cache hit for node_modules" 
+      - name: Test code
+        id: run-tests
+        run: npm run test
+        working-directory: project6
+        continue-on-error: true
+
+      - name: test checkpoint positive
+        if: success() && steps.run-tests.outcome == 'success' 
+        run: echo "TRACER tests OK"
+
+      - name: test checkpoint negative
+        if: failure() && steps.run-tests.outcome != 'success' 
+        run: echo "TRACER tests did NOT succeed !"
+
+      - name: Upload test report
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-report
+          path: project6/test.json
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ./project6/node_modules
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm install
+        working-directory: project6
+      - name: Tracer install
+        if: steps.cache.outputs.cache-hit == 'true'
+        run: echo "TRACER cache hit for node_modules" 
+      - name: Build website
+        id: build-website
+        run: npm run build
+        working-directory: project6
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-files
+          path: project6/dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: dist-files
+      - name: Output contents
+        run: ls
+      - name: Deploy
+        run: echo "Deploying..."
+  report:
+    needs: [lint, deploy]
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output info
+        run: | 
+          echo "TRACER error condition"
+          echo "${{ github }}"
