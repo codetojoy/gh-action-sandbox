@@ -32,5 +32,3 @@ jobs:
           echo "TRACER username: ${{ env.MONGODB_USERNAME }}"
           # uat environment
           echo "TRACER MY_FOO [uat]: ${{ env.MY_FOO }}"
-          # don't do this:
-          my-echo.sh ${{ env.MY_FOO }}
