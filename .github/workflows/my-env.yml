@@ -6,11 +6,12 @@ on:
 env:
   MONGODB_DB_NAME: my-gha-demo
 jobs:
-  test:
+  my-sanity-check:
     environment: uat
     env:
       MY_FOO_BAR: foobar5150
       MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
+      MY_FOO: ${{ secrets.MY_FOO }} 
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
