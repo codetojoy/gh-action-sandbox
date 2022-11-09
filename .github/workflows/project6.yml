@@ -39,6 +39,7 @@ jobs:
         id: run-tests
         run: npm run test
         working-directory: project6
+        continue-on-error: true
 
       - name: test checkpoint positive
         if: steps.run-tests.outcome == 'success' 
