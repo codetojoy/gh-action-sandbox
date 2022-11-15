@@ -4,14 +4,15 @@ on:
     branches:
       - main
 jobs:
-  client-for-foo:
+  client:
     uses: ./.github/workflows/s7_foo.yml 
     with:
       param1: '5150'
+
   result-for-foo:
-    needs: client-for-foo
+    needs: client
     runs-on: ubuntu-latest
     steps:
       - name: show result of foo
-        run: echo "TRACER [bar] result: ${{ needs.client-for-foo.outputs.result-code }}"
+        run: echo "TRACER bar result: ${{ needs.client.outputs.result-code }}"
 
