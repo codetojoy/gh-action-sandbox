@@ -15,6 +15,7 @@ jobs:
     needs: client
     runs-on: ubuntu-latest
     steps:
+      - name: banner
+        run: echo "TRACER result-code:"
       - name: show result of foo
-        run: echo "TRACER result-code: ${{ needs.client.outputs.result-code }}"
-        # run: echo "TRACER bar result: XXX" 
+        run: echo {{ needs.client.outputs.result-code }}
