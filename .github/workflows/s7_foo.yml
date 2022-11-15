@@ -6,18 +6,20 @@ on:
         description: input param #1
         required: true
         type: string
-    # outputs:
-    #   result-code:
-    #     description: result
-    #     type: string
-    #     value: ${{ }}  
+    outputs:
+      result-code:
+        description: result
+        type: string
+        value: ${{ jobs.deploy.outputs.outcome }}  
 
 jobs:
   deploy:
+    outputs:
+      outcome: ${{ steps.compute-time.outputs.my-date }}
     runs-on: ubuntu-latest 
     steps:
       - name: start
         run: echo "TRACER [s7_foo.yml] received ${{ inputs.param1 }}"
       - name: compute time
         id: compute-time
-        run: echo "compute-time=`date`" >> $GITHUB_OUTPUT 
+        run: echo "my-date=`date`" >> $GITHUB_OUTPUT 
