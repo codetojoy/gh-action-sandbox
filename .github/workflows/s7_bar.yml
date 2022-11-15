@@ -1,3 +1,5 @@
+        # run: echo "TRACER bar result: ${{ needs.client.outputs.result-code }}"
+
 name: section7_bar
 on:
   push:
@@ -14,6 +16,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: show result of foo
-        run: echo "TRACER bar result: XXX" 
-        # run: echo "TRACER bar result: ${{ needs.client.outputs.result-code }}"
-
+        run: ls
+        # run: echo "TRACER bar result: XXX" 
