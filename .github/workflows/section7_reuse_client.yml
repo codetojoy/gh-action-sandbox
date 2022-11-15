@@ -95,8 +95,8 @@ jobs:
           path: project6/dist
   deploy:
     needs: build
-    # call section7_resusable.yml
-    uses: ./.github/workflows/section7_resusable.yml 
+    # call section7_reusable.yml
+    uses: ./.github/workflows/section7_reusable.yml 
   report:
     needs: [lint, deploy]
     if: failure()
