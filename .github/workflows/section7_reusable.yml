@@ -13,8 +13,8 @@ jobs:
     steps:
       - name: get deliverable
         uses: actions/download-artifact@v3
-          with:
-            name: ${{ inputs.artifact-name }} 
+        with:
+          name: ${{ inputs.artifact-name }} 
       - name: list artifact files
         run: ls -lrt
       - name: Fake upload
