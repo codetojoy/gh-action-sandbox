@@ -13,5 +13,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: show result of foo
-      - run: echo "TRACER [bar] result: ${{ needs.client-for-foo.outputs.result-code }}"
+        run: echo "TRACER [bar] result: ${{ needs.client-for-foo.outputs.result-code }}"
 
