@@ -16,5 +16,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: show result of foo
-        run: ls
+        run: echo "TRACER wth?"
         # run: echo "TRACER bar result: XXX" 
