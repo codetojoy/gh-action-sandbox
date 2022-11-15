@@ -6,10 +6,6 @@ on:
         description: name of deployable artifact 
         required: true
         type: string
-      artifact-path:
-        description: path of deployable artifact 
-        required: true
-        type: string
 
 jobs:
   deploy:
@@ -19,7 +15,6 @@ jobs:
         uses: actions/download-artifact@v3
           with:
             name: ${{ inputs.artifact-name }} 
-            path: ${{ inputs.artifact-path }} 
       - name: list artifact files
         run: ls -lrt
       - name: Fake upload
