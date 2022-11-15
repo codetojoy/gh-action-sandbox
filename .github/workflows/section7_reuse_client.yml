@@ -97,6 +97,9 @@ jobs:
     needs: build
     # call section7_reusable.yml
     uses: ./.github/workflows/section7_reusable.yml 
+    with:
+      artifact-name: dist-files
+      artifact-path: project6/dist 
   report:
     needs: [lint, deploy]
     if: failure()

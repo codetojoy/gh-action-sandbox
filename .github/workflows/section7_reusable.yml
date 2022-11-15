@@ -1,9 +1,26 @@
 name: section7_reusable_upload
-on: workflow_call
+on: 
+  workflow_call:
+    inputs:
+      artifact-name:
+        description: name of deployable artifact 
+        required: true
+        type: string
+      artifact-path:
+        description: path of deployable artifact 
+        required: true
+        type: string
 
 jobs:
   deploy:
     runs-on: ubuntu-latest 
     steps:
+      - name: get deliverable
+        uses: actions/download-artifact@v3
+          with:
+            name: ${{ inputs.artifact-name }} 
+            path: ${{ inputs.artifact-path }} 
+      - name: list artifact files
+        run: ls -lrt
       - name: Fake upload
-        run: echo "TRACER would upload files here"
+        run: echo "TRACER [section7_reusable_upload] would upload files here"
