@@ -18,4 +18,4 @@ jobs:
       - name: banner
         run: echo "TRACER result-code:"
       - name: show result of foo
-        run: echo {{ needs.client.outputs.result-code }}
+        run: echo ${{ needs.client.outputs.result-code }}
