@@ -1,0 +1,9 @@
+name: section7_reusable_upload
+on: workflow_call
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest 
+    steps:
+      - name: Fake upload
+        run: echo "TRACER would upload files here"
