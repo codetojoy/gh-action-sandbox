@@ -9,7 +9,6 @@ on:
     outputs:
       result-code:
         description: result
-        type: string
         value: ${{ jobs.deploy.outputs.outcome }}  
 
 jobs:
