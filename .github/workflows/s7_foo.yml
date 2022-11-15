@@ -1,0 +1,23 @@
+name: section7_foo_simple_reusable
+on: 
+  workflow_call:
+    inputs:
+      param1:
+        description: input param #1
+        required: true
+        type: string
+    outputs:
+      result-code:
+        description: result
+        type: string
+        value: ${{ }}  
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest 
+    steps:
+      - name: start
+        run: echo "TRACER [s7_foo.yml] received ${{ inputs.param1 }}"
+      - name: compute time
+        id: compute-time
+        run: echo "compute-time=`date`" >> $GITHUB_OUTPUT 

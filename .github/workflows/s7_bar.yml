@@ -1,0 +1,11 @@
+name: section7_bar
+on:
+  push:
+    branches:
+      - main
+jobs:
+  client-for-foo:
+    # call s7_foo.yml
+    uses: ./.github/workflows/s7_foo.yml 
+    with:
+      param1: '5150'
