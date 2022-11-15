@@ -6,11 +6,11 @@ on:
         description: input param #1
         required: true
         type: string
-    outputs:
-      result-code:
-        description: result
-        type: string
-        value: ${{ }}  
+    # outputs:
+    #   result-code:
+    #     description: result
+    #     type: string
+    #     value: ${{ }}  
 
 jobs:
   deploy:
