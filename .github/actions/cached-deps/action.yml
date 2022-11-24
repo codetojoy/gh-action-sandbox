@@ -28,9 +28,9 @@ runs:
       - name: Install dependencies
         id: install
         if: steps.cache.outputs.cache-hit != 'true' || inputs.caching != 'true'
-        run: 
+        run: | 
           npm ci
           echo "caching=${{ inputs.caching }}" >> $GITHUB_OUTPUT
-          echo "mydate=`date`" >> $GITHUB_OUTPUT
+          echo "mydate=5150" >> $GITHUB_OUTPUT
         shell: bash
         working-directory: ${{ inputs.working-dir }}
