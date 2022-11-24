@@ -30,8 +30,8 @@ jobs:
           working-dir: './project9'
       - name: action output sanity check
         run:
-          echo "TRACER 24-NOV output cache: ${{ steps.loadcache.outputs.used-cache }}"
-          echo "TRACER 24-NOV output date-time: ${{ steps.loadcache.outputs.date-time }}"
+          echo "TRACER 24-NOV output cache" # : ${{ steps.loadcache.outputs.used-cache }}"
+          echo "TRACER 24-NOV output date-time" # : ${{ steps.loadcache.outputs.date-time }}"
       - name: Test code
         id: run-tests
         run: npm run test
