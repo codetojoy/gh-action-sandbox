@@ -1,0 +1,6 @@
+
+name: 'fake deploy to AWS S3'
+description: 'v 119 in section 9'
+runs:
+    using: 'node16'
+    main: 'main.js'
