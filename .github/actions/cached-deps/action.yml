@@ -31,6 +31,6 @@ runs:
         run: | 
           npm ci
           echo "caching=${{ inputs.caching }}" >> $GITHUB_OUTPUT
-          echo "mydate=5150" >> $GITHUB_OUTPUT
+          echo "mydate=`date`" >> $GITHUB_OUTPUT
         shell: bash
         working-directory: ${{ inputs.working-dir }}
