@@ -7,19 +7,30 @@ inputs:
   working-dir: 
     description: 'working directory'
     required: true
+outputs:
+  used-cache:
+    description: 'was cached used?'
+    value: ${{ steps.install.outputs.caching }}
+  date-time:
+    descriptino: 'run time'
+    value: ${{ steps.install.outputs.mydate }}
     
 runs:
     using: 'composite'
     steps:
       - name: Cache dependencies
-        if: inputs.caching == 'true'
         id: cache
+        if: inputs.caching == 'true'
         uses: actions/cache@v3
         with:
           path: node_modules
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
+        id: install
         if: steps.cache.outputs.cache-hit != 'true' || inputs.caching != 'true'
-        run: npm ci
+        run: 
+          npm ci
+          echo "cache=`${{ inputs.caching }}`" >> $GITHUB_OUTPUT
+          echo "mydate=`date`" >> $GITHUB_OUTPUT
         shell: bash
         working-directory: ${{ inputs.working-dir }}
