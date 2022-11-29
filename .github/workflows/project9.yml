@@ -82,5 +82,11 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
       - name: run custom JS action
+        id: my-action
         uses: ./.github/actions/deploy-s3-javascript
+        with:
+          foo: 5150
+      - name: result of custom JS action
+        run: |
+          echo "result is: ${{ steps.my-action.outputs.bar }}"
 
