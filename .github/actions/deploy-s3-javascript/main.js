@@ -7,7 +7,7 @@ function run() {
     core.notice('TRACER deploy-s3-javascript begin');
 
     const foo = core.getInput('foo', {required: true});
-    const bar = `${foo} :: ${Date.now()}`;
+    const bar = `${foo} :: ${new Date().toISOString()}`;
     core.setOutput('bar', bar); 
 
     core.notice('TRACER deploy-s3-javascript end');
