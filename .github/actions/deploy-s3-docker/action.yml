@@ -5,6 +5,8 @@ inputs:
     description: input string
     required: true
 outputs:
+  website-url:
+    description: result string
 runs:
   using: "docker"
   main: "Dockerfile"
