@@ -14,10 +14,12 @@ jobs:
         uses: ./.github/actions/cached-deps
         with:
           caching: "false"
+          working-dir: ./project_10
       - name: Output information
         run: echo "Cache used? ${{ steps.cache-deps.outputs.used-cache }}"
       - name: Lint code
         run: npm run lint
+        working-directory: ./project_10
   test:
     runs-on: ubuntu-latest
     steps:
@@ -25,15 +27,17 @@ jobs:
         uses: actions/checkout@v3
       - name: Load & cache dependencies
         uses: ./.github/actions/cached-deps
+          working-dir: './project_10'
       - name: Test code
         id: run-tests
         run: npm run test
+        working-directory: ./project_10
       - name: Upload test report
         if: failure() && steps.run-tests.outcome == 'failure'
         uses: actions/upload-artifact@v3
         with:
           name: test-report
-          path: test.json
+          path: ./project_10/test.json
   build:
     needs: test
     runs-on: ubuntu-latest
@@ -42,13 +46,17 @@ jobs:
         uses: actions/checkout@v3
       - name: Load & cache dependencies
         uses: ./.github/actions/cached-deps
+        with:
+          caching: 'true'
+          working-dir: './project_10'
       - name: Build website
         run: npm run build
+        working-directory: ./project_10
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: dist-files
-          path: dist
+          path: ./project_10/dist
   deploy:
     needs: build
     runs-on: ubuntu-latest
