@@ -5,8 +5,12 @@ from botocore.config import Config
 import sys
 
 def run():
-    print('TRACER hello from run')
+    foo = os.environ['INPUT_FOO']
+    print('TRACER hello from run ... foo: ' + foo)
     print('TRACER fake deploy')
+    my_value = f'http://codetojoy.github.io:{foo}'
+    with open(os.environ['GITHUB_OUTPUT'], 'a') as gh_output:
+        print(f'website-url={my_value}', file=gh_output)
     sys.exit(0)
     print('TRACER unexpected!!!')
     bucket = os.environ['INPUT_BUCKET']

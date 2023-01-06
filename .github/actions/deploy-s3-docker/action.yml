@@ -1,0 +1,10 @@
+name: "fake deploy to AWS S3"
+description: "v 127 in section 9"
+inputs:
+  foo:
+    description: input string
+    required: true
+outputs:
+runs:
+  using: "docker"
+  main: "Dockerfile"
